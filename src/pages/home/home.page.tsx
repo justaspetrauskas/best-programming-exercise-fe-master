@@ -37,16 +37,15 @@ const Home = () => {
   const gotToPage = (number: any) => {
     if (number > 0 && number < data.characters.info.pages)
       setCurrentPage(number);
-    console.log("Page Number", number);
   };
 
   const handleSearch = (input: string) => {
     setCurrentPage(1);
     setSearchQuery(input);
-    console.log("Page Data", data);
   };
 
   const handleReset = () => {
+    window.location.reload();
     setSearchQuery(null);
     setCurrentPage(1);
   };
