@@ -1,0 +1,11 @@
+.control-button {
+  @apply inline-flex items-center bg-white  text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow;
+}
+
+.page-item {
+  @apply p-2 border w-10 h-10 flex flex-row items-center justify-center cursor-pointer rounded font-semibold shadow-sm hover:text-white hover:shadow-sm hover:bg-[#35c9dd] hover:shadow-[#c7fa6c];
+}
+
+.active-page {
+  @apply text-white shadow-sm bg-[#35c9dd] shadow-[#c7fa6c];
+}
