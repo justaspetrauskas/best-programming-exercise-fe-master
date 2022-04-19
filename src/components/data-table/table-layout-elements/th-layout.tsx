@@ -7,7 +7,7 @@ interface ThLayoutProps {
 
 const ThLayout = ({ children, title }: ThLayoutProps) => {
   return (
-    <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+    <th className="px-5 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider bg-[rgba(53,201,221,0.6)] border-[rgba(53,201,221,0.8)] border-b-2">
       {children}
       {title}
     </th>

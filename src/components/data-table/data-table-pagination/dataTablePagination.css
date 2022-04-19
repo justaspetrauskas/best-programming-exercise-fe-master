@@ -1,5 +1,5 @@
 .control-button {
-  @apply inline-flex items-center bg-white  text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow;
+  @apply inline-flex items-center bg-white hover:text-white text-gray-800 font-semibold py-2 px-4 border transition-all duration-300 rounded-lg shadow hover:shadow-[#c7fa6c] hover:bg-[#35c9dd];
 }
 
 .page-item {
@@ -7,5 +7,9 @@
 }
 
 .active-page {
-  @apply text-white shadow-sm bg-[#35c9dd] shadow-[#c7fa6c];
+  @apply text-white shadow-sm bg-[#35c9dd] shadow-[#c7fa6c] w-12 h-12 transition-all;
+}
+
+.disabled-control {
+  @apply inline-flex items-center bg-white  text-gray-800 font-semibold py-2 px-4 border rounded-lg shadow;
 }

@@ -1,38 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PageNumberComponent from "./PageNumberComponent";
 import { Info } from "../../../common/interfaces/table.interfaces";
 
 import "./dataTablePagination.css";
 
 interface DataTablePaginationProps {
-  dataInfo: Info;
+  pagesCount: number;
   currentPage: number;
   gotToPage: (page: number) => void;
   rowsPerPage?: number;
 }
 
 const DataTablePagination = ({
-  dataInfo,
+  pagesCount,
   currentPage,
   gotToPage,
 }: DataTablePaginationProps) => {
-  const pageNumbers = [];
-
-  const { pages } = dataInfo;
-
-  for (let i = 1; i <= pages; i++) {
-    pageNumbers.push(i);
+  const pagesNumbers: number[] = [];
+  for (let i = 1; i <= pagesCount - 1; i++) {
+    pagesNumbers.push(i);
   }
-  console.log(dataInfo);
+
   return (
-    <div className="flex flex-row my-6 justify-around items-center">
+    <div className="flex flex-row my-6 justify-center space-x-1 items-center w-full">
       <button
-        className={`control-button ${currentPage > 1 && "hover:bg-gray-100"} `}
+        className={` ${
+          currentPage < 2 ? "disabled-control" : "control-button"
+        } `}
         onClick={() => gotToPage(currentPage - 1)}
         disabled={currentPage < 2}
       >
         <svg
-          className="h-5 w-5"
+          className="h-5 w-5 mr-2"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
@@ -47,32 +46,63 @@ const DataTablePagination = ({
         <span className="">Back</span>
       </button>
       <ul className="flex flex-row items-center space-x-1">
-        {pageNumbers.length >= 5
-          ? pageNumbers
+        {pagesCount > 5 && (
+          <>
+            <PageNumberComponent
+              currentPage={currentPage}
+              number={1}
+              gotToPage={gotToPage}
+            />
+            {pagesNumbers
               .slice(
-                currentPage < 3 ? 0 : currentPage - 3,
-                currentPage > pages - 3 ? 0 : currentPage + 3
+                currentPage < 4 ? 0 : currentPage - 4,
+                currentPage > pagesNumbers.length - 4
+                  ? pagesNumbers.length
+                  : currentPage + 4
               )
-              .map((number) => (
+              .map((number) => {
+                if (number > 1 && number < pagesNumbers.length) {
+                  if (
+                    number === currentPage + 4 ||
+                    number === currentPage - 3
+                  ) {
+                    return (
+                      <PageNumberComponent key={number} notANumber={true} />
+                    );
+                  }
+
+                  return (
+                    <PageNumberComponent
+                      key={number}
+                      currentPage={currentPage}
+                      number={number}
+                      gotToPage={gotToPage}
+                    />
+                  );
+                }
+              })}
+            {pagesCount <= 5 &&
+              pagesNumbers.map((number) => (
                 <PageNumberComponent
                   key={number}
                   currentPage={currentPage}
                   number={number}
                   gotToPage={gotToPage}
                 />
-              ))
-          : pageNumbers.map((number) => (
-              <PageNumberComponent
-                key={number}
-                currentPage={currentPage}
-                number={number}
-                gotToPage={gotToPage}
-              />
-            ))}
+              ))}
+            <PageNumberComponent
+              currentPage={currentPage}
+              number={pagesNumbers.length}
+              gotToPage={gotToPage}
+            />
+          </>
+        )}
       </ul>
       <button
-        className={`control-button ${
-          currentPage < pages && "hover:bg-gray-100"
+        className={` ${
+          currentPage > pagesNumbers.length - 1
+            ? "disabled-control"
+            : "control-button"
         } `}
         onClick={() => gotToPage(currentPage + 1)}
       >

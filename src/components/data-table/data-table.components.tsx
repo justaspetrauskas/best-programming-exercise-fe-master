@@ -18,7 +18,7 @@ const DataTable = ({ tableData }: DataTableProps) => {
         <DataTableHead />
         <tbody className="table-wrapper">
           {results.map((character) => (
-            <tr key={character.id} className="bg-white">
+            <tr key={character.id} className="bg-white font-semibold">
               <DataTableItem character={character} />
             </tr>
           ))}

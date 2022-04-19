@@ -13,6 +13,7 @@ import "./home.page.css";
 const Home = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string | null>(null);
+  const [pagesCount, setPagesCount] = useState<number>(0);
 
   //const [loadingTest, setLoadingTest] = useState<boolean>(true);
 
@@ -24,34 +25,46 @@ const Home = () => {
     if (searchQuery && searchQuery.length < 1) {
       setSearchQuery(null);
       setCurrentPage(1);
+      console.log("Search query is empty");
     }
   }, [searchQuery]);
+
+  useEffect(() => {
+    setPagesCount(data?.characters.info.pages);
+    console.log("Query", data?.characters.info.pages);
+  }, [data?.characters.info.pages]);
 
   const gotToPage = (number: any) => {
     if (number > 0 && number < data.characters.info.pages)
       setCurrentPage(number);
-    console.log(number);
+    console.log("Page Number", number);
   };
 
   const handleSearch = (input: string) => {
     setCurrentPage(1);
     setSearchQuery(input);
+    console.log("Page Data", data);
+  };
+
+  const handleReset = () => {
+    setSearchQuery(null);
+    setCurrentPage(1);
   };
 
   return (
     <div className="container mx-auto px-4 sm:px-8">
       <div className="my-2 flex flex-col">
-        <div className="py-6 text-center md:text-left">
+        <div className="py-8 text-center">
           <h1 className="font-ricky ">Rick and Morty</h1>
         </div>
         <SearchBar handleSearch={handleSearch} />
         {loading && <LoadingComponent />}
         {data && <DataTable tableData={data.characters} />}
-        {error && <ErrorComponent error={error} />}
+        {error && <ErrorComponent goBack={handleReset} error={error} />}
       </div>
       {data && (
         <DataTablePagination
-          dataInfo={data.characters.info}
+          pagesCount={pagesCount}
           currentPage={currentPage}
           gotToPage={gotToPage}
         />

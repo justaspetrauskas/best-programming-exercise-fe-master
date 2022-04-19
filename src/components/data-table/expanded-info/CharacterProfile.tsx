@@ -21,11 +21,11 @@ const CharacterProfileComponent = ({ character }: CharacterProfileProps) => {
         <div className="inline-flex flex-col h-full max-h-96 justify-around">
           {/* {Object.entries(data.character)} */}
           <div className="info-field ">
-            <span className="font-bold">Name:</span>
+            <span className="font-bold text-gray-400">Name:</span>
             <span className="font-semibold">{name}</span>
           </div>
           <div className="info-field">
-            <span className="font-bold">Status:</span>
+            <span className="font-bold text-gray-400">Status:</span>
             <span
               className={`font-semibold px-3 py-0.5 inset-0 ${
                 status === "Alive"
@@ -39,19 +39,19 @@ const CharacterProfileComponent = ({ character }: CharacterProfileProps) => {
             </span>
           </div>
           <div className="info-field">
-            <span className="font-bold">Gender:</span>
+            <span className="font-bold text-gray-400">Gender:</span>
             <span className="font-semibold">{gender}</span>
           </div>
           <div className="info-field">
-            <span className="font-bold">Species:</span>
+            <span className="font-bold text-gray-400">Species:</span>
             <span className="font-semibold">{species}</span>
           </div>
           <div className="info-field">
-            <span className="font-bold">Origin:</span>
+            <span className="font-bold text-gray-400">Origin:</span>
             <span className="font-semibold">{origin.name}</span>
           </div>
           <div className="info-field">
-            <span className="font-bold">Last Location:</span>
+            <span className="font-bold text-gray-400">Last Location:</span>
             <span className="font-semibold">{location.name}</span>
           </div>
         </div>

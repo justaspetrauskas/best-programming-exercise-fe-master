@@ -69,7 +69,9 @@ const DataTableItem = ({ character }: DataTableItemProps) => {
             <p className="text-gray-900 whitespace-no-wrap">{location.name}</p>
           </TdLayout>
           <TdLayout>
-            <p className="text-gray-900 whitespace-no-wrap">{episode.length}</p>
+            <p className="text-gray-900 whitespace-no-wrap text-center">
+              {episode.length}
+            </p>
           </TdLayout>
         </>
       )}

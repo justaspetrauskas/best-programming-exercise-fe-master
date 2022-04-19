@@ -31,7 +31,7 @@ const ExpandedCharacterInfo = ({
   return (
     <td
       colSpan={6}
-      className="border-b shadow-inner shadow-cyan-200/30 bg-slate-200/20 pb-8"
+      className="border-b shadow-inner shadow-[rgb(199,250,108,0.4)] bg-slate-200/20 pb-8"
     >
       {loading && <LoadingComponent />}
       {data && (
