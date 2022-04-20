@@ -26,8 +26,11 @@ const Home = () => {
   }, [data?.characters.info.pages]);
 
   const gotToPage = (number: any) => {
-    if (number > 0 && number < data.characters.info.pages)
+    console.log("Button clicked");
+    if (number > 0 && number < pagesCount) {
+      console.log("Page number will be..", number);
       setCurrentPage(number);
+    }
   };
 
   const handleSearch = (input: string) => {
