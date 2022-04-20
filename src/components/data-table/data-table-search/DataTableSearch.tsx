@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface DataTableSearchProps {
   input?: string;
@@ -7,6 +7,12 @@ interface DataTableSearchProps {
 
 const DataTableSearch = ({ handleSearch }: DataTableSearchProps) => {
   const [searchInput, setSearchInput] = useState("");
+
+  // useEffect(() => {
+  //   if (searchInput.length < 1) {
+  //     console.log("No search input provided");
+  //   }
+  // }, [searchInput]);
 
   const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.currentTarget.value;

@@ -22,16 +22,7 @@ const Home = () => {
   });
 
   useEffect(() => {
-    if (searchQuery && searchQuery.length < 1) {
-      setSearchQuery(null);
-      setCurrentPage(1);
-      console.log("Search query is empty");
-    }
-  }, [searchQuery]);
-
-  useEffect(() => {
     setPagesCount(data?.characters.info.pages);
-    console.log("Query", data?.characters.info.pages);
   }, [data?.characters.info.pages]);
 
   const gotToPage = (number: any) => {
@@ -42,6 +33,10 @@ const Home = () => {
   const handleSearch = (input: string) => {
     setCurrentPage(1);
     setSearchQuery(input);
+    // if (input.length < 1) {
+    //   setSearchQuery(null);
+    //   console.log("Searh query is empty 2");
+    // }
   };
 
   const handleReset = () => {
